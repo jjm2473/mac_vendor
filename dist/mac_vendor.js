@@ -33,7 +33,7 @@ window.mac_vendor = (function(){
         if (!oui || !mac){
             return;
         }
-        mac = mac.replaceAll(/[-:]/g, '');
+        mac = mac.replaceAll(/[-:]/g, '').toUpperCase();
         var vendor = queryVendor(mac);
         if (vendor === undefined) {
             return;
@@ -71,4 +71,6 @@ window.mac_vendor = (function(){
         .then(function(){return {query:query};})
         );
 })();
-// window.mac_vendor.onready(api=>api.query("AA:BB:CC"))
+/* 
+window.mac_vendor.onready(api=>api.query("98:01:A7:A8:00:00"))
+*/
