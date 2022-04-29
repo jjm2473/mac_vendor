@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mac Vendor test</title>
+</head>
+<body>
+
+    <script src="./mac_vendor.js"></script>
+    <script>
+        window.mac_vendor.onready(api=>{
+            console.log(api.query("00:11:22:33:44:55"));
+            console.log(api.query("8C:7A:3D:14:00:00"));
+            console.log(api.query("98:01:A7:A8:00:00"));
+            console.log(api.query("04:33:85:4E:00:00"));
+            console.log(api.query("5E:77:5D:BA:00:00"));
+        });
+        window.mac_vendor.onready(api=>{
+            console.log(api.query("00:11:22:33:44:55"));
+            console.log(api.query("8C:7A:3D:14:00:00"));
+            console.log(api.query("98:01:A7:A8:00:00"));
+            console.log(api.query("04:33:85:4E:00:00"));
+            console.log(api.query("5E:77:5D:BA:00:00"));
+        });
+    </script>
+</body>
+</html>
