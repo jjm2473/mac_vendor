@@ -2,8 +2,18 @@ window.mac_vendor = (function(){
     if (window.mac_vendor) {
         return window.mac_vendor;
     }
-    var oui_path="./oui.csv?v=1";
-    var oui_cn_path="./oui_cn.json?v=1";
+    var data_version = "?v=PKG_VERSION";
+    var base_url = null;
+    document.querySelectorAll('script[src*="/mac_vendor.js"]').forEach(function(s) {
+        if (base_url == null || base_url == '') {
+            var m = (s.getAttribute('src') || '').match(/^(.*)\/mac_vendor\.js(?:\?.*)?$/);
+            if (m) {
+                base_url = m[1];
+            }
+        }
+    });
+    var oui_path = base_url + "/oui.csv" + data_version;
+    var oui_cn_path = base_url + "/oui_cn.json" + data_version;
     var oui_p = [9, 7, 6];
     var oui;
     var oui_cn;
@@ -38,7 +48,7 @@ window.mac_vendor = (function(){
     return (function(p){return {onready:function(cb){p.then(cb)}}})(
         new Promise(function(resolve){
             setTimeout(function(){
-                fetch_oui=fetch(oui_path)
+                fetch_oui=fetch(oui_path, {credentials: 'same-origin'})
                     .then(function(res){return res.text();})
                     .then(function(data){
                         oui = data.split('\n').reduce(function(acc, line){
@@ -48,9 +58,8 @@ window.mac_vendor = (function(){
                             }
                             return acc;
                         }, {});
-                        // oui = data;
                     });
-                fetch_oui_cn=fetch(oui_cn_path)
+                fetch_oui_cn=fetch(oui_cn_path, {credentials: 'same-origin'})
                     .then(function(res){return res.json();})
                     .then(function(data){
                         oui_cn = data;

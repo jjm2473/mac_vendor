@@ -262,7 +262,7 @@ def main():
     if total_added < min_total:
         exit_msg("Too few total entries ({})".format(total_added))
 
-    manuf_path = os.path.join(this_dir, 'oui.csv')
+    manuf_path = os.path.join(this_dir, 'dist', 'oui.csv')
     # Write the output file.
     try:
         manuf_fd = io.open(manuf_path, 'w', encoding='UTF-8')
@@ -281,7 +281,7 @@ def main():
     manuf_fd.close()
 
     translate_rules.sort(key=lambda tup:tup[1].lower())
-    cname_path = os.path.join(this_dir, 'oui_cn.json')
+    cname_path = os.path.join(this_dir, 'dist', 'oui_cn.json')
     # Write the output file.
     try:
         cname_fd = io.open(cname_path, 'w', encoding='UTF-8')
